@@ -26,72 +26,70 @@ Inplace sorting algo take const amount of extra memory
             - Insertion 
             - Selection  
             - **Merge**
-- Selection Sort (**Slow Sorting Algo [O(n^2)]**)
-    - Find the minimum value in the list
-    - Swap it with the value in the current position
-    - Repeat this process for all the elements until the entire array is sorted
+###  Selection Sort (**Slow Sorting Algo [O(n^2)]**)
+- Find the minimum value in the list
+- Swap it with the value in the current position
+- Repeat this process for all the elements until the entire array is sorted
     
-    - ![Selection Sort](https://i2.wp.com/algorithms.tutorialhorizon.com/files/2019/01/Selection-Sort-Gif.gif?ssl=1)
-    - Code 
-    ```
-    int n = a.size();
+- ![Selection Sort](https://i2.wp.com/algorithms.tutorialhorizon.com/files/2019/01/Selection-Sort-Gif.gif?ssl=1)
+- Code 
+```
+int n = a.size();
 
-	// In each iteration place appropriate element at ith position
-	for (int index = 0; index < n - 1; index++)
-	{
-		int indexOfMinElement = index;
-		for (int j = index + 1; j < n; j++)
-		{
-			if (a[j] < a[indexOfMinElement])
-				indexOfMinElement = j; //update index of min element
-		}
-		if (index != indexOfMinElement)
-			std::swap(a[index], a[indexOfMinElement]);
-	}
-    ```
+// In each iteration place appropriate element at ith position
+for (int index = 0; index < n - 1; index++)
+{
+    int indexOfMinElement = index;
+    for (int j = index + 1; j < n; j++)
+    {
+        if (a[j] < a[indexOfMinElement])
+            indexOfMinElement = j; //update index of min element
+    }
+    if (index != indexOfMinElement)
+        std::swap(a[index], a[indexOfMinElement]);
+}
+```
     
-
-- Bubble Sort
-    - a[current element]  > a[next element] then swap
+### Bubble Sort
+- a[current element]  > a[next element] then swap
      ![Selection Sort](https://www.programmingsimplified.com/images/c/bubble-sort.gif)
 
-    - Code 
+- Code 
 
-    ```
-    int n = a.size();
-	for (int index = 0; index < n - 1; index++)
-	{
-		for (int j = 0; j < n - index - 1; j++)
-		{
-			// if curr > next then swap
-			if (a[j] > a[j + 1])
-			{
-				std::swap(a[j], a[j + 1]);
-			}
-		}
-	} 
-    ```
-
-- Insertion Sort 
-    - ![Insertion Sort](https://thagomizer.com/img/InsertionSortInPlace.gif)
-    - Code 
-    ```
-    int n = a.size();
-    for (int index = 1; index < n; index++)
+```
+int n = a.size();
+for (int index = 0; index < n - 1; index++)
+{
+    for (int j = 0; j < n - index - 1; j++)
     {
-       int j=index-1;
-       int val=a[index];
-       while(j>0 && a[j]>val)
-       {
-           a[j+1]=a[j];
-           j--;
-       }
-       a[j+1]=val;
+        // if curr > next then swap
+        if (a[j] > a[j + 1])
+        {
+            std::swap(a[j], a[j + 1]);
+        }
     }
-    ```
-- Merge Sort 
+} 
+```
+## Insertion Sort 
+- ![Insertion Sort](https://thagomizer.com/img/InsertionSortInPlace.gif)
+- Code 
+```
+int n = a.size();
+for (int index = 1; index < n; index++)
+{
+    int j=index-1;
+    int val=a[index];
+    while(j>0 && a[j]>val)
+    {
+        a[j+1]=a[j];
+        j--;
+    }
+    a[j+1]=val;
+}
+```
+### Merge Sort 
 
-- Quick Sort 
+### Quick Sort 
 - ![Quick Sort](https://www.tutorialspoint.com/data_structures_algorithms/images/quick_sort_partition_animation.gif)
 - ![Quick Sort](https://fullyunderstood.com/wp-content/uploads/2019/09/quicksort.gif)
 - Algo 
@@ -135,19 +133,65 @@ void QuickSort(vector<int>&a,int start,int end)
 }
 ```
 
-- Shell Sort
-    - ![Shell Sort](https://www.programmersought.com/images/328/bbd7d8f1c8b40dad6ca9b812117deb98.gif)
-    - Also known as 
+### Shell Sort
+- ![Shell Sort](https://www.programmersought.com/images/328/bbd7d8f1c8b40dad6ca9b812117deb98.gif)
+- Also known as 
         - `Diminishing increment sort`
         - `n-gap insertion sort`
-    - generalized of insertion sort 
+- generalized of insertion sort 
 
 ## Linear Sorting Algo 
-- Count Sort 
-    - not comparison base 
-    - Complexity O(n)
-    - ![Counting Sort 1](https://www.codesdope.com/staticroot/images/algorithm/count1.gif)
-    - ![Counting Sort 2](https://miro.medium.com/max/1432/0*B-CyBxmCVUolqSjj.gif)
+### Count Sort 
+- not comparison base 
+- Complexity O(n)
+- ![Counting Sort 1](https://www.codesdope.com/staticroot/images/algorithm/count1.gif)
+- ![Counting Sort 2](https://miro.medium.com/max/1432/0*B-CyBxmCVUolqSjj.gif)
+
+```
+void countSort(vector<int> &a)
+{
+	int n = a.size();
+
+	int maxofa = a[0];
+
+	// Find max element from array
+	for (int i = 0; i < a.size(); i++)
+	{
+		maxofa = max(maxofa, a[i]);
+	}
+	// max define size of count array
+
+	// make array of size max  and init all element to 0
+	vector<int> count(maxofa + 1, 0);
+
+	// store count of each element from original array
+	for (int i = 0; i < n; i++)
+	{
+		count[a[i]]++;
+	}
+
+	// modify count array (a)
+	for (int i = 1; i < count.size(); i++)
+	{
+		count[i] += count[i - 1];
+	}
+
+	// make output array
+	vector<int> output(n);
+
+	// traverse original array from last
+	for (int i = n - 1; i >= 0; i--)
+	{
+		output[--count[a[i]]] = a[i];
+	}
+
+	// now put output array inside original array
+	for (int i = 0; i < n; i++)
+	{
+		a[i] = output[i];
+	}
+}
+```
 
    
 - Time Complexity of All Sorting Algos 
