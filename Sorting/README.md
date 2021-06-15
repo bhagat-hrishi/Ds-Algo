@@ -1,6 +1,6 @@
 # Sorting
 
--   [Classification]()
+-   [Classification](https://github.com/bhagat-hrishi/Ds-Algo/tree/main/Sorting#classification-of-sorting-algo)
 -   [Selection Sort](https://github.com/bhagat-hrishi/Ds-Algo/tree/main/Sorting#selection-sort-slow-sorting-algo-on2)
 -   [Bubble Sort](https://github.com/bhagat-hrishi/Ds-Algo/tree/main/Sorting#bubble-sort)
 -   [Insertion sort](https://github.com/bhagat-hrishi/Ds-Algo/tree/main/Sorting#insertion-sort)
@@ -8,8 +8,8 @@
 -   [Quick Sort](https://github.com/bhagat-hrishi/Ds-Algo/tree/main/Sorting#quick-sort)
 -   [Shell Sort](https://github.com/bhagat-hrishi/Ds-Algo/tree/main/Sorting#shell-sort)
 -   [Count Sort](https://github.com/bhagat-hrishi/Ds-Algo/tree/main/Sorting#count-sort)
--   [All time complexity](https://github.com/bhagat-hrishi/Ds-Algo/tree/main/Sorting#count-sort)
--   [All space complexity](https://github.com/bhagat-hrishi/Ds-Algo/tree/main/Sorting#count-sort)
+-   [All time complexity](https://github.com/bhagat-hrishi/Ds-Algo/tree/main/Sorting#time-complexity-of-all-sorting-algos)
+-   [All space complexity](https://github.com/bhagat-hrishi/Ds-Algo/tree/main/Sorting#inplace-and-stable)
 
 ## Classification of sorting algo
 
