@@ -27,9 +27,11 @@ Inplace sorting algo take const amount of extra memory
             - Selection  
             - **Merge**
 - Selection Sort (**Slow Sorting Algo [O(n^2)]**)
-    - Selecting min at each pass and put element at 
-    appropriate position. 
-    ![Selection Sort](https://i2.wp.com/algorithms.tutorialhorizon.com/files/2019/01/Selection-Sort-Gif.gif?ssl=1)
+    - Find the minimum value in the list
+    - Swap it with the value in the current position
+    - Repeat this process for all the elements until the entire array is sorted
+    
+    - ![Selection Sort](https://i2.wp.com/algorithms.tutorialhorizon.com/files/2019/01/Selection-Sort-Gif.gif?ssl=1)
     - Code 
     ```
     int n = a.size();
@@ -133,7 +135,19 @@ void QuickSort(vector<int>&a,int start,int end)
 }
 ```
 
+- Shell Sort
+    - ![Shell Sort](https://www.programmersought.com/images/328/bbd7d8f1c8b40dad6ca9b812117deb98.gif)
+    - Also known as 
+        - `Diminishing increment sort`
+        - `n-gap insertion sort`
+    - generalized of insertion sort 
 
+## Linear Sorting Algo 
+- Count Sort 
+    - not comparison base 
+    - Complexity O(n)
+    - ![Counting Sort 1](https://www.codesdope.com/staticroot/images/algorithm/count1.gif)
+    - ![Counting Sort 2](https://miro.medium.com/max/1432/0*B-CyBxmCVUolqSjj.gif)
 
    
 - Time Complexity of All Sorting Algos 
