@@ -2,22 +2,6 @@
 ## Time complexity
 - Time taken by algo as function of length of i/p 
 
-## Heap
-- To identify heap question 
-    - K is given 
-    - to find smallest or largest
-        - if smallest make min heap
-        - if largest make max heap
-- STL 
-    - max heap 
-    > `priority_queue <int> max_heap`
-
-    - min heap 
-    > `priority_queue< int,vector<int>,greater<int> >min_heap`
-
-- Note 
-    - for every heap questions first discuss sorting approach
-
 
 
 ## Sliding window
@@ -44,3 +28,8 @@
     - if array is presnet may be stack or heap (may be u want to sort for heap)
     - 
 
+## Extra Problems
+- [Striver CP sheet](https://docs.google.com/document/d/1vShwt8yXYUOgkF53-iYAuJXWR7Yi5VSJrW2xB49o0PM/edit)
+- [Striver SDE Sheet](https://docs.google.com/document/d/1SM92efk8oDl8nyVw8NHPnbGexTS9W-1gmTEYfEurLWQ/edit)
+- [Striver CR Sheet](https://docs.google.com/document/d/1L3sbSjPdnoJLBR7vnE-AyDlSGNcd4bcEhu5Rveucpa8/edit)
+- [The-Complete-FAANG-Preparation](https://github.com/AkashSingh3031/The-Complete-FAANG-Preparation)
