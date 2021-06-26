@@ -8,8 +8,8 @@ Algo
 4)if indegree of any of adjcent node is 0 push inside queue and repeat process from 2 
   until queue is empty
 
-time complexity of O(V + E)O(V+E) 
-    – where VV is the number of vertices and EE is the number of edges in the graph.
+time complexity of O(V + E) 
+    – where V is the number of vertices  and E is the number of edges in the graph.
 
 
 

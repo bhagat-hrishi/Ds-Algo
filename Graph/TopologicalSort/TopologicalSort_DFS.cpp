@@ -1,13 +1,17 @@
 #include <bits/stdc++.h>
 using namespace std;
 /*
-    Time complexity ->  O(n+e)
+    Time complexity ->  O(n+e) [this is dfs with extra stack so same as T.C. is same as DFS]
 
                 visited array
                          |
     Space complexity -> O(n)
 
     auxilary space complexity - O(n) [For using stack]
+
+
+note -
+that a vertex is pushed to stack only when all of its adjacent vertices (and their adjacent vertices and so on) are already in the stack.
 */
 void helperDFS(int node, vector<int> &vis, vector<int> adj[], stack<int> &s)
 {
