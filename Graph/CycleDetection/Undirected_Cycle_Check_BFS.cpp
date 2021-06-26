@@ -1,16 +1,6 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-/*
-Time complexity -  O(V+E) (in worst case we visit all nodes in bfs travesal)
-
-                        For queue(in worst case all n-1 node connected to one node)
-                            |
-Space complexity - O(V+E)+O(V)+O(V);
-                                |
-                            visited array
-*/
-
 bool helperFunction(int source, vector<int> &vis, vector<int> adj[])
 {
     // mark node as visited
@@ -27,14 +17,15 @@ bool helperFunction(int source, vector<int> &vis, vector<int> adj[])
         int parent = it.second;
         q.pop();
 
-        // now visit childs of source
+        // now visit adjecent nodes  of source
         for (int child : adj[source])
         {
-            if (!vis[child])
+            if (vis[child]==0)//if not visited
             {
-                vis[child] = 1;
                 // push unvisited node and its parent inside queue
                 q.push({child, source});
+                // make node visited
+                vis[child] = 1;
             }
             else if (child != parent)
             {
@@ -51,7 +42,7 @@ bool detectCycle(int &v, vector<int> &vis, vector<int> adj[])
     {
         if (!vis[i])
         {
-            if (helperFunction(v, vis, adj))
+            if (helperFunction(i, vis, adj))
                 return true;
         }
     }
