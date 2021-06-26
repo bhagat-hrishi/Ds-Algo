@@ -37,10 +37,10 @@ void helperBFS(int source, vector<int> adj[], int v)
     }
 
     cout << "\nShortest distance from node " << source << endl;
-    cout<<"node "<<" "<<"distance "<<endl;
+    cout<<" node "<<" "<<" distance "<<endl;
     for (int node = 0; node < v; node++)
     {
-        cout <<node<< "      "<< distance[node] << endl;
+        cout <<node<< " "<< distance[node] << endl;
     }
 }
 
