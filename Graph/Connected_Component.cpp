@@ -28,6 +28,7 @@ int main()
     }
     int cocompCount=0;
 
+// To call for all components 
     for(int i=0;i<v;i++)
     {
         if(vis[i]==0)
