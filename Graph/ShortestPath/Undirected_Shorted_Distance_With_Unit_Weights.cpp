@@ -1,5 +1,10 @@
-// shoretest path in undirected graph with unit(1) edge weights
+/*
+-> Find shortest distance from source node to every other node 
+-> shoretest path in undirected graph with unit(1) edge weights
 
+1)Take distance array and mark each node distance as inifinity
+2)mark distance of source node as 0 and put inside queu 
+*/
 #include <bits/stdc++.h>
 using namespace std;
 
@@ -22,7 +27,7 @@ void helperBFS(int source, vector<int> adj[], int v)
 
         for (auto adjecentnode : adj[node])
         {
-            // if node+1 is less than current distance of adjecent node
+            // if distance of current node + 1 is less than current distance of adjecent node
             if (distance[node] + 1 < distance[adjecentnode])
             {
                 distance[adjecentnode] = distance[node] + 1;
@@ -32,9 +37,10 @@ void helperBFS(int source, vector<int> adj[], int v)
     }
 
     cout << "\nShortest distance from node " << source << endl;
+    cout<<"node "<<" "<<"distance "<<endl;
     for (int node = 0; node < v; node++)
     {
-        cout << node << " " << distance[node] << endl;
+        cout <<node<< "      "<< distance[node] << endl;
     }
 }
 
