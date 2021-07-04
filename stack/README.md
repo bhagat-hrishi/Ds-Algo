@@ -1,0 +1,14 @@
+# Stack
+-   Types of Expression
+    - Infix
+    - Prefix **[Polist]**
+    - Postfix **[Reverse Polish Notation]**
+- Application
+    - Balancing of symbols
+    - Infix-to-postfix conversion
+    - Evaluation of postfix expression
+    - Implementing function calls (including recursion)
+    - Finding of spans (finding spans in stock markets, refer to Problems section)
+    - Page-visited history in a Web browser [Back Buttons]
+    - Undo sequence in a text editor
+    - Matching Tags in HTMLand XML
