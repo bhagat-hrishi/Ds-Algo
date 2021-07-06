@@ -126,7 +126,7 @@ void morrisInorder(node *rt)
 }
 
 //_______________________________preorde traversal__________________
-void normal_Preorder(node *rt)
+void normal_Preorder(node *rt) //recursive preorder
 {
     if (rt)
     {
@@ -135,7 +135,7 @@ void normal_Preorder(node *rt)
         normal_Preorder(rt->r);
     }
 }
-void stack_Preorder(node *rt)
+void stack_Preorder(node *rt) //using stack
 {
     if (!rt)
         return;
@@ -157,7 +157,7 @@ void stack_Preorder(node *rt)
 
 //_______________________postOrder_______________________
 //Left - Right - Root
-void stack_PostOrder(node *root)
+void stack_PostOrder(node *root) //using 2 stack
 {
     if (!root)
         return;
@@ -181,7 +181,7 @@ void stack_PostOrder(node *root)
         ans.pop();
     }
 }
-void normal_PostOrder(node *rt)
+void normal_PostOrder(node *rt) //recursive postorder
 {
     if (rt)
     {
@@ -211,7 +211,7 @@ int max_Element(node *rt)
         Max = rt->data;
     return Max;
 }
-//_________________________Zig and Zag traversal___________________
+//30)_________________________Zig and Zag traversal___________________
 //use 2 stacks for storing alternate levels
 //for 1st stack store right child 1st then left child
 //for 2nd stack store left child 1st then right child
@@ -433,7 +433,7 @@ ll height_No_Recursion(node *rt)
     ll sizeof_queue;
     while (!q.empty())
     {
-        //store size of queue(no of nodes at level)
+        //store size of queue(no of nodes at level particular level)
         sizeof_queue = q.size();
         while (sizeof_queue > 0)
         {
@@ -449,7 +449,7 @@ ll height_No_Recursion(node *rt)
     }
     return height;
 }
-//find deepest node in tree
+//find deepest node in tree(last node in level order traversal)
 void deep_Node(node *rt)
 {
     if (!rt)
@@ -558,6 +558,36 @@ ll count_Of_Full_Nodes(node *rt)
     }
     return cnt++;
 }
+//Count of number of leaf without recursion
+int count_Of_Leaf_Nodes(node *rt)
+{
+    ll cnt = 0;
+    if (!rt)
+        return cnt;
+    queue<node *> q;
+    node *curr = rt;
+    q.push(rt);
+    while (!q.empty())
+    {
+        curr = q.front();
+        q.pop();
+        if (curr->r == NULL && curr->l == NULL)
+            cnt++;
+        else
+        {
+            if (curr->l)
+            {
+                q.push(curr->l);
+            }
+            if (curr->r)
+            {
+                q.push(curr->r);
+            }
+        }
+    }
+    return cnt;
+}
+
 //Count of Half nodes without recursion
 //The set of all nodes with either left or right children but not both are called Half nodes
 ll count_Of_Half_Nodes(node *rt)
@@ -645,7 +675,7 @@ ll level_That_Has_Max_Sum(node *rt)
     while (!q.empty())
     {
         no_node_at_level = q.size(); //q.size() gives no of nodes at that level
-        sum_that_level = 0;
+        sum_that_level = 0;          //initial sum at each level is 0
         while (no_node_at_level--)
         {
             curr = q.front();
@@ -752,7 +782,7 @@ ll sum_Of_All_No_Recursion(node *rt)
     }
     return sum;
 }
-//Convert given tree into its mirror
+//24)Convert given tree into its mirror
 //Mirror of a tree is another tree with left and right children of all non-leaf nodes interchanged.
 node *make_Mirror(node *rt)
 {
@@ -771,7 +801,7 @@ node *make_Mirror(node *rt)
 }
 
 /*
-Check 2 tree mirror of each other or not
+25)Check 2 tree mirror of each other or not
 Time Complexity: O(n). Space Complexity: O(n).
 
 */
@@ -787,40 +817,41 @@ bool check_2_Tree_Mirror_or_not(node *rt1, node *rt2)
     return check_2_Tree_Mirror_or_not(rt1->l, rt2->r) && check_2_Tree_Mirror_or_not(rt1->r, rt2->l);
 }
 
-//Build tree from inorder and preorder traversal
-//use map to store inorder element value and its index
-
-ll getInorder_Index(ll inorder[], ll instart, ll inend, ll data)
+//________________________________construct Binary tree from inorder and preorder traversal
+// helper function
+node *build_Tree_from_Inorder_Preorder(ll preIndex, ll inorder[], ll preorder[], ll instart, ll inend, map<int, int> &m)
 {
-    ll i = instart;
-    for (; i <= inend; i++)
-        if (inorder[i] == data)
-            break;
-    return i;
-}
-
-node *build_Tree_from_Inorder_Preorder(ll inorder[], ll preorder[], ll instart, ll inend)
-{
-    static ll pre_index = 0;
-    node *rt;
     if (instart > inend)
         return NULL;
+    node *rt;
     //select node from preorder taraversal
-    ll data = preorder[pre_index];
-    pre_index++;
+    ll data = preorder[preIndex];
+    preIndex++;
     rt = createNode(data);
     if (instart == inend)
         return rt;
     //find inorder index of this node in inorder traversal
-    ll inorder_index = getInorder_Index(inorder, instart, inend, data);
+    ll inorder_index = m[data];
 
     //fill right and left sub tree by inorder traversal
-    rt->l = build_Tree_from_Inorder_Preorder(inorder, preorder, instart, inorder_index - 1);
-    rt->r = build_Tree_from_Inorder_Preorder(inorder, preorder, inorder_index + 1, inend);
+    rt->l = build_Tree_from_Inorder_Preorder(preIndex, inorder, preorder, instart, inorder_index - 1, m);
+    rt->r = build_Tree_from_Inorder_Preorder(preIndex, inorder, preorder, inorder_index + 1, inend, m);
 
     return rt;
 }
-//print Ancenstor of given node
+
+node *construct_from_inorder_and_preorder(ll in[], ll pre[], ll sz)
+{
+    //use map to store inorder element value and its index
+    map<int, int> m;
+    for (int i = 0; i < sz; i++)
+        m[in[i]] = i; //map element with its index in inorder array
+
+    ll preIndex = 0;
+
+    return build_Tree_from_Inorder_Preorder(preIndex, in, pre, 0, sz - 1, m);
+}
+//29)print Ancenstor of given node
 bool print_Ancenstor(node *rt, ll key)
 {
     if (rt == NULL)
@@ -1076,7 +1107,7 @@ ll max_Path_Sum(node *rt) //?????????????
 }
 
 //_______________________LCA________________________
-//find lowest common ancenstor  of 2 nodes
+//26)find lowest common ancenstor  of 2 nodes
 node *LCA(node *rt, node *first, node *second)
 {
     if (rt == NULL)
